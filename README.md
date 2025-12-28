@@ -1,28 +1,83 @@
-# AppleGame
-Macro to solve Applegame automatically. https://www.gamesaien.com/game/fruit_box_a/.
+# Apple Game Solver
 
-## How to use
-### GUI
-> GUI mode. Distinctive Scan, Search, Run supported.
+이 프로그램은 화면의 숫자 퍼즐 게임을 자동으로 인식하고 해결하는 GUI 애플리케이션입니다.
 
-```sh
-python main.py -g
+## 기능
+
+*   **화면 스캔:** 현재 화면에 표시된 게임 보드를 인식하여 그리드로 변환합니다.
+*   **최적 해법 탐색:** 다양한 알고리즘을 사용하여 가장 높은 점수를 얻을 수 있는 최적의 이동 순서를 계산합니다.
+*   **자동 플레이:** 계산된 이동 순서에 따라 마우스를 자동으로 조작하여 게임을 플레이합니다.
+*   **게임 재시작:** 게임을 초기 상태로 되돌립니다.
+
+## 요구사항
+
+이 프로그램을 실행하기 위해서는 아래의 라이브러리들이 설치되어 있어야 합니다.
+
+*   Python 3.x
+*   PyQt6
+*   Pillow (pyautogui 의존성)
+*   PyAutoGUI
+*   NumPy
+*   OpenPyXL
+
+## 설치 방법
+
+1.  **프로젝트 복제:**
+    ```bash
+    git clone <repository-url>
+    cd applegame
+    ```
+
+2.  **필요 라이브러리 설치:**
+    ```bash
+    pip install PyQt6 Pillow pyautogui numpy openpyxl
+    ```
+    *`Pillow`는 `pyautogui` 설치 시 자동으로 설치될 수 있습니다.*
+
+## 사용 방법
+
+### GUI 모드
+
+1.  아래 명령어를 사용하여 GUI 애플리케이션을 실행합니다.
+    ```bash
+    python main.py -g
+    ```
+
+2.  **Scan:** 게임 화면이 보이는 상태에서 `Scan` 버튼을 눌러 게임 보드를 인식시킵니다.
+3.  **Search:** 원하는 탐색 알고리즘과 파라미터를 설정한 후 `Search` 버튼을 눌러 최적의 해법을 찾습니다.
+4.  **Run:** `Run` 버튼을 눌러 계산된 해법으로 게임을 자동으로 플레이합니다.
+5.  **Restart:** `Restart` 버튼을 눌러 게임을 재시작할 수 있습니다.
+
+### CLI 모드 (개발자용)
+
+CLI 모드는 특정 탐색 알고리즘을 테스트하거나 성능을 분석하기 위한 용도입니다.
+
+```bash
+# 예시: Iterative Solver 사용
+python main.py -i
+
+# 예시: Exhaustive Solver 사용
+python main.py -e
 ```
 
-### CLI
-```
-python main.py <args>
-```
-### Search arguments (must-have)
-- `-i`: Iterative Search
-- `-n`: N-Iterative Search
-- `-r`: Recursive Iterative Search
-- `-h`: Heuristic Iiterative Search
-- `-e`: Exhaustive Search
+**개발 모드 (`--dev`)**
 
-### Dev mode
-Dev mode can be configured with argument `--dev`
-- `--v`: Verbose Mode(Not Implemented yet)
-- `--e`: Execute(If dev mode is activated and Execute is not configured, then it will just search and not run)
-- `--s <iteration>`: Summarize Searching Algorithms
-  - Summary mode makes excel file in current directory, which summarizes multiple runs with every searching algorithm.
+개발 모드는 솔버의 성능 테스트 및 분석을 위한 추가 옵션을 제공합니다.
+
+*   `--dev`: 개발 모드를 활성화합니다. 이 플래그 없이 다음 옵션들은 작동하지 않습니다.
+*   `--s <반복 횟수>`: `--dev`와 함께 사용되며, 모든 솔버(Exhaustive, H-Iteration, R-Iteration, N-Iteration, Iterative)를 지정된 횟수만큼 실행하고 결과를 Excel 파일로 저장합니다. `OpenPyXL` 라이브러리가 필요합니다.
+    ```bash
+    python main.py --dev --s 100 # 모든 솔버를 100회 반복 실행하고 결과를 Excel로 저장
+    ```
+*   `--e`: `--dev`와 함께 사용될 때, 솔루션을 찾은 후 실제로 게임을 플레이(solve 함수 실행)하도록 지시합니다. `--dev`만 사용하고 `--e`를 지정하지 않으면, 솔루션이 찾아져도 게임은 플레이되지 않고 최대 점수만 출력됩니다.
+    ```bash
+    python main.py --dev -i --e # Iterative 솔버로 해법을 찾은 후 게임 플레이
+    ```
+*   `--v`: `--dev`와 함께 사용되며, 더 자세한 정보를 출력할 수 있습니다 (현재 버전에서는 사용되지 않을 수 있습니다).
+
+다양한 옵션은 `main.py` 코드를 참고하십시오.
+
+## 주의사항
+
+*   `Scan` 기능은 **메인 모니터**의 화면을 기준으로 동작합니다. 게임 창이 메인 모니터에 위치해야 합니다.
+*   화면 해상도나 테마에 따라 이미지 인식(숫자, 버튼)이 실패할 수 있습니다. 이 경우 `images` 폴더의 스크린샷을 사용 환경에 맞게 직접 캡처하여 교체해야 할 수 있습니다. 이 모델은 2880x1800 환경을 기준으로 제작되었습니다.
