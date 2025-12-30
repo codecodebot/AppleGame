@@ -39,15 +39,15 @@ def solve(move_sequence, pos_dict, initial_grid, difficulty):
 
 def scan():
     try:
-        one = list(pyautogui.locateAllOnScreen('images/1.png', confidence=0.8))
-        two = list(pyautogui.locateAllOnScreen('images/2.png', confidence=0.8))
-        three = list(pyautogui.locateAllOnScreen('images/3.png', confidence=0.8))
-        four = list(pyautogui.locateAllOnScreen('images/4.png', confidence=0.8))
-        five = list(pyautogui.locateAllOnScreen('images/5.png', confidence=0.8))
-        six = list(pyautogui.locateAllOnScreen('images/6.png', confidence=0.8))
-        seven = list(pyautogui.locateAllOnScreen('images/7.png', confidence=0.8))
-        eight = list(pyautogui.locateAllOnScreen('images/8.png', confidence=0.8))
-        nine = list(pyautogui.locateAllOnScreen('images/9.png', confidence=0.8))
+        one = list(pyautogui.locateAllOnScreen('images/1.png', confidence=0.72))
+        two = list(pyautogui.locateAllOnScreen('images/2.png', confidence=0.72))
+        three = list(pyautogui.locateAllOnScreen('images/3.png', confidence=0.72))
+        four = list(pyautogui.locateAllOnScreen('images/4.png', confidence=0.72))
+        five = list(pyautogui.locateAllOnScreen('images/5.png', confidence=0.72))
+        six = list(pyautogui.locateAllOnScreen('images/6.png', confidence=0.72))
+        seven = list(pyautogui.locateAllOnScreen('images/7.png', confidence=0.72))
+        eight = list(pyautogui.locateAllOnScreen('images/8.png', confidence=0.72))
+        nine = list(pyautogui.locateAllOnScreen('images/9.png', confidence=0.72))
     except Exception as e:
         print(f"An error occurred during screen scan: {e}")
         return [], [], [], {}
