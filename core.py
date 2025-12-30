@@ -6,10 +6,10 @@ import numpy as np
 
 def restart_game():
     try:
-        reset = pyautogui.locateCenterOnScreen('images/reset.png', confidence=0.9)
+        reset = pyautogui.locateCenterOnScreen('images/reset.png', confidence=0.7)
         if reset:
             pyautogui.leftClick(reset.x, reset.y)
-        play = pyautogui.locateCenterOnScreen('images/play.png', confidence=0.9)
+        play = pyautogui.locateCenterOnScreen('images/play.png', confidence=0.7)
         if play:
             pyautogui.leftClick(play.x, play.y)
     except (ImageNotFoundException, TypeError):
@@ -39,15 +39,15 @@ def solve(move_sequence, pos_dict, initial_grid, difficulty):
 
 def scan():
     try:
-        one = list(pyautogui.locateAllOnScreen('images/1.png', confidence=0.9))
-        two = list(pyautogui.locateAllOnScreen('images/2.png', confidence=0.9))
-        three = list(pyautogui.locateAllOnScreen('images/3.png', confidence=0.9))
-        four = list(pyautogui.locateAllOnScreen('images/4.png', confidence=0.9))
-        five = list(pyautogui.locateAllOnScreen('images/5.png', confidence=0.9))
-        six = list(pyautogui.locateAllOnScreen('images/6.png', confidence=0.9))
-        seven = list(pyautogui.locateAllOnScreen('images/7.png', confidence=0.9))
-        eight = list(pyautogui.locateAllOnScreen('images/8.png', confidence=0.9))
-        nine = list(pyautogui.locateAllOnScreen('images/9.png', confidence=0.9))
+        one = list(pyautogui.locateAllOnScreen('images/1.png', confidence=0.7))
+        two = list(pyautogui.locateAllOnScreen('images/2.png', confidence=0.7))
+        three = list(pyautogui.locateAllOnScreen('images/3.png', confidence=0.7))
+        four = list(pyautogui.locateAllOnScreen('images/4.png', confidence=0.7))
+        five = list(pyautogui.locateAllOnScreen('images/5.png', confidence=0.7))
+        six = list(pyautogui.locateAllOnScreen('images/6.png', confidence=0.7))
+        seven = list(pyautogui.locateAllOnScreen('images/7.png', confidence=0.7))
+        eight = list(pyautogui.locateAllOnScreen('images/8.png', confidence=0.7))
+        nine = list(pyautogui.locateAllOnScreen('images/9.png', confidence=0.7))
     except Exception as e:
         print(f"An error occurred during screen scan: {e}")
         return [], [], [], {}
